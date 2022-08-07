@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { ingredientsPropsType } from "../../utils/prop-type";
 import {
@@ -9,12 +9,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import style from "../burger-constructor/burger-constructor.module.css";
-import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
 
 const BurgerConstructor = ({ ingredientsInBurger }) => {
-  const [order, setOrder] = useState(null);
-  const closeOrderModar = () => setOrder(null);
   const img = ingredientsInBurger[0].image_mobile;
   return (
     <section className={style.constructor}>
@@ -59,13 +55,8 @@ const BurgerConstructor = ({ ingredientsInBurger }) => {
           <p className="text text_type_digits-medium">610</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button onClick={setOrder}>Оформите заказ</Button>
+        <Button>Оформите заказ</Button>
       </div>
-      {order && (
-        <Modal closeModal={closeOrderModar}>
-          <OrderDetails />
-        </Modal>
-      )}
     </section>
   );
 };

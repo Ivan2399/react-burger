@@ -30,7 +30,7 @@
 
 .ready {
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
 }
 
 .total_price {
