@@ -8,7 +8,7 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 
 import style from "../modal/modal.module.css";
 
-const modalRoot = document.getElementById("root");
+const modalRoot = document.querySelector("#modal");
 
 const Modal = ({ title, closeModal, children }) => {
   React.useEffect(() => {
