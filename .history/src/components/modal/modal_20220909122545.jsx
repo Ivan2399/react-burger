@@ -9,7 +9,7 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import style from "../modal/modal.module.css";
 import { BurgerContext } from "../../contexts/burger-context";
 
-const modalRoot = document.getElementById("root");
+const modalRoot = document.getElementById("modal");
 
 const Modal = ({ title, children }) => {
   const { state, dispatcher } = useContext(BurgerContext);
