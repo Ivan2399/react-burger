@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React, { useCallback, useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -7,20 +7,10 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 
 import style from "../modal/modal.module.css";
-import { BurgerContext } from "../../contexts/burger-context";
 
 const modalRoot = document.getElementById("root");
 
-const Modal = ({ title, children }) => {
-  const { state, dispatcher } = useContext(BurgerContext);
-  const closeModal = useCallback(() => {
-    if (state.selectedIngredient !== null) {
-      dispatcher({ type: "closeIngrModal" });
-    } else if (state.order !== null) {
-      dispatcher({ type: "closeOrderModal" });
-    } else throw new Error("error with close modal");
-  }, [dispatcher, state.order, state.selectedIngredient]);
-
+const Modal = ({ title, closeModal, children }) => {
   React.useEffect(() => {
     const handleEsc = (e) => {
       e.key === "Escape" && closeModal();
@@ -33,7 +23,7 @@ const Modal = ({ title, children }) => {
   }, [closeModal]);
 
   return ReactDOM.createPortal(
-    <>
+    <div>
       <ModalOverlay onClick={closeModal} />
       <div className={`p-10 ${style.modal}`}>
         <div className={style.header}>
@@ -42,13 +32,14 @@ const Modal = ({ title, children }) => {
         </div>
         <div className={style.content}>{children}</div>
       </div>
-    </>,
+    </div>,
     modalRoot
   );
 };
 
 Modal.propTypes = {
   title: PropTypes.string,
+  closeModal: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };
 

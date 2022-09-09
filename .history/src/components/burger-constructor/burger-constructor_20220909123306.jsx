@@ -14,9 +14,9 @@ const BurgerConstructor = () => {
   const { state, dispatcher } = useContext(BurgerContext);
   const setOrder = () => {
     const arrOfIngredients = [];
-    arrOfIngredients.push(state.constructorIngredient.bun[0]._id);
+    arrOfIngredients.push(state.constructorIngredient.bun[0].id);
     state.constructorIngredient.inner.map((el) =>
-      arrOfIngredients.push(el._id)
+      arrOfIngredients.push(el.id)
     );
     console.log(arrOfIngredients);
 
